@@ -16,3 +16,7 @@ src/bin/dayX.rs
 
 # AoC inputs
 inputs/
+
+
+node_modules/
+yarn.lock

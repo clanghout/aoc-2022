@@ -1,0 +1,14 @@
+{
+  "scripts": {
+    "start": "deno run day2.ts",
+  },
+  "dependencies": {
+    "typescript": "^4.9.3"
+  },
+  "name": "aoc-2022",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:clanghout/aoc-2022.git",
+  "author": "Chris Langhout <clanghout@bol.com>",
+  "license": "MIT"
+}

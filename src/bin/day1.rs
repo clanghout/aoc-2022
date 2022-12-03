@@ -35,7 +35,7 @@ fn calc_part1(input: &[usize]) -> &usize {
 
 fn calc_part2(input: &mut [usize]) -> usize {
     input.sort_unstable_by(|a, b| b.cmp(a));
-    input[0] + input[1] + input[2]
+    input.iter().take(3).sum()
 }
 
 
