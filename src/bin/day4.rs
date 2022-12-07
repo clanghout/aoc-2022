@@ -19,10 +19,10 @@ fn parse_input(contents: &str) -> Vec<Vec<Vec<usize>>> {
         .lines()
         .map(|line|
             line
-                .split(",")
+                .split(',')
                 .map(|area|
                     area
-                        .split("-")
+                        .split('-')
                         .map(|x|
                             x.parse::<usize>().ok().unwrap()).collect()).collect())
         .collect()
@@ -77,7 +77,7 @@ fn test() {
 6-6,4-6
 2-6,4-8
 ";
-    let test = parse_input(&input);
+    let test = parse_input(input);
     assert_eq!(calc_part1(&test), 2usize)
 }
 
@@ -91,6 +91,6 @@ fn test2() {
 6-6,4-6
 2-6,4-8
 ";
-    let test = parse_input(&input);
+    let test = parse_input(input);
     assert_eq!(calc_part2(&test), 4usize)
 }

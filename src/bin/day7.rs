@@ -36,12 +36,19 @@ fn parse_input(contents: &str) -> HashMap<String, usize> {
                     // do nothing
                 }
                 _ => cur.iter().enumerate().for_each(|(i, _)| {
-                    let key = cur.iter().take(i + 1).map(|a| *a).collect::<Vec<&str>>().concat();
+                    let key = cur
+                        .iter()
+                        .take(i + 1).copied()
+                        .collect::<Vec<&str>>()
+                        .concat();
                     let size = match re.captures(line) {
                         Some(cap) => cap[1].parse().unwrap(),
                         None => panic!("Invalid move string {}", line),
                     };
-                    folders.entry(key).and_modify(|total_size| *total_size += size).or_insert(size);
+                    folders
+                        .entry(key)
+                        .and_modify(|total_size| *total_size += size)
+                        .or_insert(size);
                 })
             }
         );
@@ -94,7 +101,7 @@ $ ls
 8033020 d.log
 5626152 d.ext
 7214296 k";
-    let test = parse_input(&input);
+    let test = parse_input(input);
     assert_eq!(calc_part1(&test), 95437usize)
 }
 
@@ -123,6 +130,6 @@ $ ls
 8033020 d.log
 5626152 d.ext
 7214296 k";
-    let test = parse_input(&input);
+    let test = parse_input(input);
     assert_eq!(calc_part2(&test), 24933642usize)
 }

@@ -79,10 +79,10 @@ fn calc_part1(input: &mut (Vec<Vec<char>>, Vec<Command>)) -> String {
     let mut copied = input.0.clone();
     input.1.iter().for_each(|command| {
         for _ in 0..command.amount {
-            copied[command.from - 1].pop().map(|val| copied[command.to - 1].push(val));
+            if let Some(val) = copied[command.from - 1].pop() { copied[command.to - 1].push(val) }
         }
     });
-    String::from_iter(copied.iter().filter_map(|x| x.last()).map(|x| *x).collect::<Vec<char>>())
+    String::from_iter(copied.iter().filter_map(|x| x.last()).copied().collect::<Vec<char>>())
 }
 
 fn calc_part2(input: &mut (Vec<Vec<char>>, Vec<Command>)) -> String {
@@ -98,8 +98,7 @@ fn calc_part2(input: &mut (Vec<Vec<char>>, Vec<Command>)) -> String {
     });
     String::from_iter(copied
         .iter()
-        .map(|x| x.last().unwrap())
-        .map(|x| *x)
+        .map(|x| x.last().unwrap()).copied()
         .collect::<Vec<char>>())
 }
 
@@ -116,7 +115,7 @@ move 3 from 1 to 3
 move 2 from 2 to 1
 move 1 from 1 to 2
 ";
-    let mut test = parse_input(&input);
+    let mut test = parse_input(input);
     assert_eq!(calc_part1(&mut test), "CMZ")
 }
 
@@ -135,7 +134,7 @@ move 1 from 1 to 2
 move 5 from 3 to 2
 move 1 from 2 to 3
 ";
-    let mut test = parse_input(&input);
+    let mut test = parse_input(input);
     assert_eq!(calc_part2(&mut test), "MND")
 }
 
